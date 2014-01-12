@@ -40,8 +40,8 @@ done < $1
 
 
 prog=$prog_rbr
-input_test=`find $input -type f | grep .test`
-input_train=`find $input -type f | grep .train`
+input_test=`find $input -type f | grep _test.dat`
+input_train=`find $input -type f | grep _train.dat`
 inputs=(`echo $input_train | tr " " "\n"`)
 if [ ! -f $output ]; then
 	mkdir $output
