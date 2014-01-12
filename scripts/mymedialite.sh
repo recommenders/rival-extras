@@ -62,7 +62,8 @@ if [[ -n "$ibrec" ]]; then
 			#echo $testfile
 			outfile=${inpt##*/}
 			outfile=${outfile%.*}
-			outfile=`echo "$output/$outfile.$ibrec.$sim.csv"`
+			outfile=`echo "$output/$outfile.mymedialite.$ibrec.$sim.tsv"`
+			outfile=${outfile/_train/}
 			#echo $outfile
 			if [ -f $outfile ]
 			then
@@ -92,7 +93,8 @@ if [[ -n "$ubrec" ]]; then
 			outfile=${outfile%.*}
 			nn=(`echo $n | tr "," "\n"`)
 			for ns in ${nn[@]}; do
-				outputfile=`echo "$output/$outfile.$ubrec.$sim.$ns.csv"`
+				outputfile=`echo "$output/$outfile.mymedialite.$ubrec.$sim.$ns.tsv"`
+				outputfile=${outputfile/_train/}
 				if [ -f $outputfile ]
 				then
 					echo "Already recommended $outputfile for this data"
@@ -114,7 +116,8 @@ if [[ -n "$svdrec" ]]; then
 		outfile=${outfile%.*}
 		nn=(`echo $n | tr "," "\n"`)
 		for ns in ${nn[@]}; do
-			outputfile=`echo "$output/$outfile.$svdrec.$ns.csv"`
+			outputfile=`echo "$output/$outfile.mymedialite.$svdrec.$ns.tsv"`
+			outputfile=${outputfile/_train/}
 			if [ -f $outputfile ]
 			then
 				echo "Already recommended $outputfile for this data"
