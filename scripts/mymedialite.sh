@@ -43,7 +43,7 @@ prog=$prog_rbr
 input_test=`find $input -type f | grep _test.dat`
 input_train=`find $input -type f | grep _train.dat`
 inputs=(`echo $input_train | tr " " "\n"`)
-if [ ! -f $output ]; then
+if [ -f $output ]; then
 	mkdir $output
 fi
 
@@ -95,7 +95,7 @@ if [[ -n "$ubrec" ]]; then
 				outputfile=`echo "$output/$outfile.$ubrec.$sim.$ns.csv"`
 				if [ -f $outputfile ]
 				then
-					echo "Already recommended $outfile for this data"
+					echo "Already recommended $outputfile for this data"
 				else
 					$program --training-file=$inpt --file-format=default --test-file=$testfile --recommender=$ubrec --all-items --prediction-file=$outputfile --recommender-options="correlation=$sim k=$ns"
 				fi
@@ -117,7 +117,7 @@ if [[ -n "$svdrec" ]]; then
 			outputfile=`echo "$output/$outfile.$svdrec.$ns.csv"`
 			if [ -f $outputfile ]
 			then
-				echo "Already recommended $outfile for this data"
+				echo "Already recommended $outputfile for this data"
 			else
 				$prog_rbr --training-file=$inpt --file-format=default --test-file=$testfile --recommender=$svdrec --all-items --prediction-file=$outputfile --recommender-options="num_factors=$ns num_iter=50"
 			fi
